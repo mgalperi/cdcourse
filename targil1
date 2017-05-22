@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+  - name: install git
+    yum: name=git state=latest
+    become: yes
+  - name: clone cdcourse
+    git: repo='https://github.com/mgalperi/cdcourse' dest=/home/ec2-user/cdcourse clone=yes
+  - name: clone petclinic
+    git: repo='https://github.com/mgalperi/spring-petclinic' dest=/home/ec2-user/pet-clinic clone=yes
