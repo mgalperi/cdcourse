@@ -7,3 +7,12 @@
     git: repo='https://github.com/mgalperi/cdcourse' dest=/home/ec2-user/cdcourse clone=yes
   - name: clone petclinic
     git: repo='https://github.com/mgalperi/spring-petclinic' dest=/home/ec2-user/pet-clinic clone=yes
+  - name: install docker
+    yum: name=docker state=latest
+    become: yes
+  - name: add ec2-user to docker group
+    user: name=ec2-user groups=docker,ec2-user
+    become: yes
+  - name: start docker service
+    service: name=docker state=started
+    become: yes
